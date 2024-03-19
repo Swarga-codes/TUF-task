@@ -1,8 +1,13 @@
 import React from 'react'
 import Popup from './Popup';
 
+import { ring2 } from 'ldrs'
 
-export default function SubmissionsTable({data}) {
+ring2.register()
+
+
+
+export default function SubmissionsTable({data,loading}) {
   const [open, setOpen] = React.useState(false)
 const [sourceCode,setSourceCode]=React.useState('')
 function formatDate(date){
@@ -74,7 +79,8 @@ function formatDate(date){
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 bg-white">
+                          <tbody className="divide-y divide-gray-200 bg-white">
+                   
                     {data?.map((submission) => (
                       <tr key={submission.id}>
                         <td className="whitespace-nowrap px-4 py-4">
@@ -112,6 +118,19 @@ function formatDate(date){
                     ))}
                   </tbody>
                 </table>
+               {loading && <div className='flex justify-center items-center mt-4'>
+
+<l-ring-2
+size="40"
+stroke="5"
+stroke-length="0.25"
+bg-opacity="0.1"
+speed="0.8" 
+color="black" 
+></l-ring-2>
+<b className='ml-4'>Loading submissions...</b>
+</div>}
+          
               </div>
             </div>
           </div>
